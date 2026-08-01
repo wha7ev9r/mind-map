@@ -3284,14 +3284,14 @@
   top: -30px;
 }
 
-.editContainer[data-v-82d50354] {
+.editContainer[data-v-84388464] {
   position: fixed;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
 }
-.editContainer .dragMask[data-v-82d50354] {
+.editContainer .dragMask[data-v-84388464] {
   position: absolute;
   left: 0;
   top: 0;
@@ -3303,11 +3303,11 @@
   justify-content: center;
   z-index: 3999;
 }
-.editContainer .dragMask .dragTip[data-v-82d50354] {
+.editContainer .dragMask .dragTip[data-v-84388464] {
   pointer-events: none;
   font-weight: bold;
 }
-.editContainer .mindMapContainer[data-v-82d50354] {
+.editContainer .mindMapContainer[data-v-84388464] {
   position: absolute;
   left: 0px;
   top: 0px;

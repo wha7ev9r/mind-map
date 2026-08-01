@@ -633,20 +633,7 @@ export default {
       this.$bus.$emit('importFile', file)
     },
 
-    // 网页版试用提示
-    webTip() {
-      const storageKey = 'webUseTip'
-      const data = localStorage.getItem(storageKey)
-      if (data) {
-        return
-      }
-      this.showDownloadTip(
-        '重要提示',
-        '网页版已暂停更新，部分功能缺失，请下载客户端获得完整体验~'
-      )
-      localStorage.setItem(storageKey, 1)
-    },
-
+    // 网页版试用提示（已取消，不再引导用户下载客户端）
     showDownloadTip(title, desc) {
       const h = this.$createElement
       this.$msgbox({
