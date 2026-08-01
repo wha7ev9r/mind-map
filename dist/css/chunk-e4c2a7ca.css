@@ -1,4 +1,4 @@
-.noteContentViewer[data-v-001bb58c] {
+.noteContentViewer[data-v-40013690] {
   position: fixed;
   background-color: #fff;
   padding: 10px;
@@ -7,7 +7,7 @@
   border: 1px solid rgba(0, 0, 0, 0.06);
   z-index: 2;
 }
-.noteContentViewer .noteContentWrap[data-v-001bb58c] {
+.noteContentViewer .noteContentWrap[data-v-40013690] {
   max-width: 250px;
   max-height: 300px;
   overflow-y: auto;
