@@ -31,13 +31,24 @@ module.exports = {
         return args
       })
     }
+    // Node 26 下 cssnano 4 压缩报错，移除 css 压缩（部署端 gzip/brotli 自动压缩）
+    if (!isDev) {
+      config.plugins.delete('optimize-css')
+    }
   },
   configureWebpack: {
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src/')
       }
-    }
+    },
+    // 生产环境通过 CDN 引入的大库，减小打包体积
+    externals: !isDev
+      ? {
+          'element-ui': 'ELEMENT',
+          mathlive: 'MathLive'
+        }
+      : {}
   },
   devServer: {
     proxy: {

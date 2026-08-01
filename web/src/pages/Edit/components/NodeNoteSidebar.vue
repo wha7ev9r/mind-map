@@ -7,8 +7,6 @@
 <script>
 import Sidebar from './Sidebar.vue'
 import { mapState, mapMutations } from 'vuex'
-import Viewer from '@toast-ui/editor/dist/toastui-editor-viewer'
-import '@toast-ui/editor/dist/toastui-editor-viewer.css'
 
 export default {
   components: {
@@ -69,9 +67,14 @@ export default {
     },
 
     // 初始化编辑器
-    initEditor() {
+    async initEditor() {
       if (!this.editor) {
-        this.editor = new Viewer({
+        // 按需加载 toast-ui 渲染器，减小首屏体积
+        const ViewerModule = await import(
+          '@toast-ui/editor/dist/toastui-editor-viewer'
+        )
+        await import('@toast-ui/editor/dist/toastui-editor-viewer.css')
+        this.editor = new ViewerModule.default({
           el: this.$refs.noteContentWrap
         })
       }

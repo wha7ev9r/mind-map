@@ -102,7 +102,6 @@ import NavigatorToolbar from './NavigatorToolbar.vue'
 import ShortcutKey from './ShortcutKey.vue'
 import Contextmenu from './Contextmenu.vue'
 import RichTextToolbar from './RichTextToolbar.vue'
-import NodeNoteContentShow from './NodeNoteContentShow.vue'
 import { getData, getConfig, storeData } from '@/api'
 import Navigator from './Navigator.vue'
 import NodeImgPreview from './NodeImgPreview.vue'
@@ -127,7 +126,6 @@ import NodeTagStyle from './NodeTagStyle.vue'
 import Setting from './Setting.vue'
 import AssociativeLineStyle from './AssociativeLineStyle.vue'
 import NodeImgPlacementToolbar from './NodeImgPlacementToolbar.vue'
-import NodeNoteSidebar from './NodeNoteSidebar.vue'
 import AiCreate from './AiCreate.vue'
 import AiChat from './AiChat.vue'
 
@@ -172,7 +170,8 @@ export default {
     ShortcutKey,
     Contextmenu,
     RichTextToolbar,
-    NodeNoteContentShow,
+    // 笔记相关组件按需加载（内部含 toast-ui 编辑器）
+    NodeNoteContentShow: () => import('./NodeNoteContentShow.vue'),
     Navigator,
     NodeImgPreview,
     SidebarTrigger,
@@ -189,7 +188,8 @@ export default {
     Setting,
     AssociativeLineStyle,
     NodeImgPlacementToolbar,
-    NodeNoteSidebar,
+    // 笔记侧边栏按需加载（内部含 toast-ui 渲染器）
+    NodeNoteSidebar: () => import('./NodeNoteSidebar.vue'),
     AiCreate,
     AiChat
   },

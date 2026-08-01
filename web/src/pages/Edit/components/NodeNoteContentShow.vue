@@ -18,9 +18,6 @@
 </template>
 
 <script>
-import Viewer from '@toast-ui/editor/dist/toastui-editor-viewer'
-import '@toast-ui/editor/dist/toastui-editor-viewer.css'
-
 // 节点备注内容显示
 export default {
   props: {
@@ -114,9 +111,14 @@ export default {
     },
 
     // 初始化编辑器
-    initEditor() {
+    async initEditor() {
       if (!this.editor) {
-        this.editor = new Viewer({
+        // 按需加载 toast-ui 渲染器，减小首屏体积
+        const ViewerModule = await import(
+          '@toast-ui/editor/dist/toastui-editor-viewer'
+        )
+        await import('@toast-ui/editor/dist/toastui-editor-viewer.css')
+        this.editor = new ViewerModule.default({
           el: this.$refs.noteContentWrap
         })
       }

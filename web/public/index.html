@@ -9,6 +9,17 @@
     />
     <link rel="icon" href="dist/logo.ico" />
     <title>思绪思维导图</title>
+    <!-- CDN 资源：element-ui / mathlive（锁定版本，减小打包体积） -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/element-ui@2.15.14/lib/theme-chalk/index.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/mathlive@0.110.0/mathlive-fonts.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.14/lib/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathlive@0.110.0/mathlive.min.js"></script>
     <script>
       // 自定义静态资源的路径
       window.externalPublicPath = './dist/'
@@ -19,17 +30,21 @@
       charset="UTF-8"
       id="LA_COLLECT"
       src="//sdk.51.la/js-sdk-pro.min.js"
+      defer
     ></script>
     <script>
-      try {
-        LA.init({
-          id: 'KRO0WxK8GT66tYCQ',
-          ck: 'KRO0WxK8GT66tYCQ',
-          autoTrack: false
-        })
-      } catch (error) {
-        console.log(error)
-      }
+      // 等待 51.la 统计脚本（defer 加载）就绪后再初始化
+      window.addEventListener('load', () => {
+        try {
+          LA.init({
+            id: 'KRO0WxK8GT66tYCQ',
+            ck: 'KRO0WxK8GT66tYCQ',
+            autoTrack: false
+          })
+        } catch (error) {
+          console.log(error)
+        }
+      })
     </script>
   </head>
   <body>
