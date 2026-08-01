@@ -1,0 +1,49 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /web
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: "Asia/Shanghai"
+    open-pull-requests-limit: 10
+    labels:
+      - dependencies
+    commit-message:
+      prefix: deps
+      include: scope
+    versioning-strategy: increase
+    ignore:
+      # Vue 2 已 EOL，锁定主版本，避免被误升到 3.x
+      - dependency-name: "vue"
+      - dependency-name: "vue-template-compiler"
+      # element-ui 通过 CDN 锁定 2.15.14 引入，版本变化需手动同步 CDN
+      - dependency-name: "element-ui"
+      - dependency-name: "mathlive"
+      - dependency-name: "simple-mind-map"
+
+  - package-ecosystem: npm
+    directory: /simple-mind-map
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: "Asia/Shanghai"
+    open-pull-requests-limit: 10
+    labels:
+      - dependencies
+    commit-message:
+      prefix: deps
+      include: scope
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: "Asia/Shanghai"
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies

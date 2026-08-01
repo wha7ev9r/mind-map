@@ -14,4 +14,3 @@ utools/dist
 !.env.example
 
 # pnpm 自动生成的占位文件（approve-builds 提示用，无需入库）
-web/pnpm-workspace.yaml

@@ -1,13 +1,30 @@
-<!DOCTYPE html><html lang=""><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1"><link rel="icon" href="dist/logo.ico"><title>思绪思维导图</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.14/lib/theme-chalk/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mathlive@0.110.0/mathlive-fonts.css"><script>// CDN 主源加载失败时回退到备用源，避免应用白屏
-      function cdnFallback(el, url) {
+<!DOCTYPE html><html lang=""><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1"><link rel="icon" href="dist/logo.ico"><title>思绪思维导图</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.14/lib/theme-chalk/index.css" integrity="sha384-U/oTChX3yRnZAbda3u2iWVBW/3V8d0HVEdq5PUo4VpZia68QK9lmrfpObbqcliCS" crossorigin="anonymous" onerror="cdnFallbackCss(this, 'https://unpkg.com/element-ui@2.15.14/lib/theme-chalk/index.css', 'sha384-U/oTChX3yRnZAbda3u2iWVBW/3V8d0HVEdq5PUo4VpZia68QK9lmrfpObbqcliCS')"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mathlive@0.110.0/mathlive-fonts.css" integrity="sha384-bM7DoAEijDQHufH3TpTu231ivT7MHdqFSabucM8mLR6nZfF85DEQbKuuSv+r1V22" crossorigin="anonymous" onerror="cdnFallbackCss(this, 'https://unpkg.com/mathlive@0.110.0/mathlive-fonts.css', 'sha384-bM7DoAEijDQHufH3TpTu231ivT7MHdqFSabucM8mLR6nZfF85DEQbKuuSv+r1V22')"><script>// CDN 主源加载失败时回退到备用源，避免应用白屏
+      function cdnFallback(el, url, integrity) {
         if (!el) return
         el.onerror = null
         var s = document.createElement('script')
         s.src = url
         s.async = false
         s.defer = true
+        if (integrity) {
+          s.integrity = integrity
+          s.crossOrigin = 'anonymous'
+        }
         el.parentNode.insertBefore(s, el.nextSibling)
-      }</script><script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.14/lib/index.js" defer onerror="cdnFallback(this, 'https://unpkg.com/element-ui@2.15.14/lib/index.js')"></script><script src="https://cdn.jsdelivr.net/npm/mathlive@0.110.0/mathlive.min.js" defer onerror="cdnFallback(this, 'https://unpkg.com/mathlive@0.110.0/mathlive.min.js')"></script><script>// 自定义静态资源的路径
+      }
+      // 样式表加载失败时的回退（备用源 + 相同的 SRI 校验）
+      function cdnFallbackCss(el, url, integrity) {
+        if (!el) return
+        el.onerror = null
+        var l = document.createElement('link')
+        l.rel = 'stylesheet'
+        l.href = url
+        if (integrity) {
+          l.integrity = integrity
+          l.crossOrigin = 'anonymous'
+        }
+        el.parentNode.insertBefore(l, el.nextSibling)
+      }</script><script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.14/lib/index.js" integrity="sha384-pg3detCs/QybtaIrIhYFKMrhdlXpsil+MUFDLsMS2KiBb9ZBu5ipUSeMQOOQTXqt" crossorigin="anonymous" defer onerror="cdnFallback(this, 'https://unpkg.com/element-ui@2.15.14/lib/index.js', 'sha384-pg3detCs/QybtaIrIhYFKMrhdlXpsil+MUFDLsMS2KiBb9ZBu5ipUSeMQOOQTXqt')"></script><script src="https://cdn.jsdelivr.net/npm/mathlive@0.110.0/mathlive.min.js" integrity="sha384-5IN6K0kiaz8MufrTGBvPCP3oDeMjmwe+DDTvuyQLNv6gc634FpKbQfllonjHJPmy" crossorigin="anonymous" defer onerror="cdnFallback(this, 'https://unpkg.com/mathlive@0.110.0/mathlive.min.js', 'sha384-5IN6K0kiaz8MufrTGBvPCP3oDeMjmwe+DDTvuyQLNv6gc634FpKbQfllonjHJPmy')"></script><script>// 自定义静态资源的路径
       window.externalPublicPath = './dist/'
       // 接管应用
       window.takeOverApp = false</script><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js" defer></script><script>// 等待 51.la 统计脚本（defer 加载）就绪后再初始化
@@ -21,7 +38,7 @@
         } catch (error) {
           console.log(error)
         }
-      })</script><link href="dist/css/chunk-vendors.css?83111126d859331a6f2b" rel="stylesheet"><link href="dist/css/app.css?83111126d859331a6f2b" rel="stylesheet"></head><body><noscript><strong>We're sorry but thoughts doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id="app"></div><script>const getDataFromBackend = () => {
+      })</script><link href="dist/css/chunk-vendors.css?de4d98473f1c50de1d48" rel="stylesheet"><link href="dist/css/app.css?de4d98473f1c50de1d48" rel="stylesheet"></head><body><noscript><strong>We're sorry but thoughts doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id="app"></div><script>const getDataFromBackend = () => {
         return new Promise((resolve, reject) => {
           setTimeout(() => {
             resolve({
@@ -95,4 +112,4 @@
         // 可以通过window.$bus.$on()来监听应用的一些事件
         // 实例化页面
         window.initApp()
-      }</script><script src="dist/js/chunk-vendors.js?83111126d859331a6f2b" defer></script><script src="dist/js/app.js?83111126d859331a6f2b" defer></script></body></html>
+      }</script><script src="dist/js/chunk-vendors.js?de4d98473f1c50de1d48" defer></script><script src="dist/js/app.js?de4d98473f1c50de1d48" defer></script></body></html>

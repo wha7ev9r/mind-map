@@ -1,0 +1,37 @@
+allowBuilds:
+  core-js: set this to true or false
+  esbuild: set this to true or false
+  yorkie: set this to true or false
+minimumReleaseAgeExclude:
+  - js-yaml@3.15.1
+# pnpm 依赖覆盖（安全版本修复，见依赖审计）
+overrides:
+  node-forge: 1.3.1
+  semver@5: 5.7.2
+  semver@6: 6.3.1
+  json5: 1.0.2
+  terser@4: 4.8.1
+  postcss@7: 7.0.39
+  ssri@6: 6.0.2
+  loader-utils: 1.4.2
+  serialize-javascript: 7.0.7
+  cross-spawn: 7.0.6
+  braces: 3.0.3
+  micromatch: 4.0.8
+  tmp: 0.2.7
+  flatted: 3.4.4
+  ejs: 3.1.10
+  websocket-driver: 0.7.5
+  ansi-html: 0.0.9
+  dot-prop: 5.3.0
+  decode-uri-component: 0.4.1
+  hosted-git-info: 2.8.9
+  qs: 6.15.3
+  tough-cookie: 4.1.4
+  js-yaml@3: 3.15.1
+  acorn@6: 6.4.2
+  acorn@7: 7.4.1
+  "@hapi/hoek": 8.5.1
+  form-data@2: 2.5.6
+  dompurify: 3.4.12
+  css-what@2: 2.1.3
