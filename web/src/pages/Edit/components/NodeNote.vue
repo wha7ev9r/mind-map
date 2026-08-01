@@ -36,6 +36,7 @@ export default {
       note: '',
       activeNodes: [],
       editor: null,
+      editorPromise: null,
       isMobile: isMobile(),
       appointNode: null
     }
@@ -78,22 +79,31 @@ export default {
       }
       this.dialogVisible = true
       this.$nextTick(() => {
-        this.initEditor()
+        this.initAndSetMarkdown()
       })
     },
 
-    async initEditor() {
-      if (!this.editor) {
-        // 按需加载 toast-ui 编辑器，减小首屏体积
-        const EditorModule = await import('@toast-ui/editor')
-        await import('@toast-ui/editor/dist/toastui-editor.css')
-        this.editor = new EditorModule.default({
-          el: this.$refs.noteEditor,
-          height: '500px',
-          initialEditType: 'markdown',
-          previewStyle: 'vertical'
-        })
+    initEditor() {
+      if (!this.editorPromise) {
+        this.editorPromise = this.loadEditor()
       }
+      return this.editorPromise
+    },
+
+    async loadEditor() {
+      // 按需加载 toast-ui 编辑器，减小首屏体积
+      const EditorModule = await import('@toast-ui/editor')
+      await import('@toast-ui/editor/dist/toastui-editor.css')
+      this.editor = new EditorModule.default({
+        el: this.$refs.noteEditor,
+        height: '500px',
+        initialEditType: 'markdown',
+        previewStyle: 'vertical'
+      })
+    },
+
+    async initAndSetMarkdown() {
+      await this.initEditor()
       this.editor.setMarkdown(this.note)
     },
 
@@ -105,7 +115,8 @@ export default {
       }
     },
 
-    confirm() {
+    async confirm() {
+      await this.initEditor()
       this.note = this.editor.getMarkdown()
       if (this.appointNode) {
         this.appointNode.setNote(this.note)

@@ -20,6 +20,7 @@ export default {
   data() {
     return {
       editor: null,
+      editorPromise: null,
       node: null
     }
   },
@@ -66,23 +67,28 @@ export default {
       }
     },
 
-    // 初始化编辑器
-    async initEditor() {
-      if (!this.editor) {
-        // 按需加载 toast-ui 渲染器，减小首屏体积
-        const ViewerModule = await import(
-          '@toast-ui/editor/dist/toastui-editor-viewer'
-        )
-        await import('@toast-ui/editor/dist/toastui-editor-viewer.css')
-        this.editor = new ViewerModule.default({
-          el: this.$refs.noteContentWrap
-        })
+    // 初始化编辑器（按需加载 toast-ui 渲染器，减小首屏体积）
+    initEditor() {
+      if (!this.editorPromise) {
+        this.editorPromise = this.loadEditor()
       }
+      return this.editorPromise
     },
 
-    onNodeNoteClick(node) {
+    async loadEditor() {
+      const ViewerModule = await import(
+        '@toast-ui/editor/dist/toastui-editor-viewer'
+      )
+      await import('@toast-ui/editor/dist/toastui-editor-viewer.css')
+      this.editor = new ViewerModule.default({
+        el: this.$refs.noteContentWrap
+      })
+    },
+
+    async onNodeNoteClick(node) {
       this.node = node
       this.setActiveSidebar('noteSidebar')
+      await this.initEditor()
       this.editor.setMarkdown(node.getData('note'))
     }
   }

@@ -31,6 +31,7 @@ export default {
   data() {
     return {
       editor: null,
+      editorPromise: null,
       show: false,
       left: 0,
       top: 0,
@@ -74,8 +75,9 @@ export default {
     },
 
     // 显示备注浮层
-    onShowNoteContent(content, left, top, node) {
+    async onShowNoteContent(content, left, top, node) {
       this.node = node
+      await this.initEditor()
       this.editor.setMarkdown(content)
       this.handleALink()
       this.updateNoteContentPosition(left, top)
@@ -110,18 +112,22 @@ export default {
       this.show = false
     },
 
-    // 初始化编辑器
-    async initEditor() {
-      if (!this.editor) {
-        // 按需加载 toast-ui 渲染器，减小首屏体积
-        const ViewerModule = await import(
-          '@toast-ui/editor/dist/toastui-editor-viewer'
-        )
-        await import('@toast-ui/editor/dist/toastui-editor-viewer.css')
-        this.editor = new ViewerModule.default({
-          el: this.$refs.noteContentWrap
-        })
+    // 初始化编辑器（按需加载 toast-ui 渲染器，减小首屏体积）
+    initEditor() {
+      if (!this.editorPromise) {
+        this.editorPromise = this.loadEditor()
       }
+      return this.editorPromise
+    },
+
+    async loadEditor() {
+      const ViewerModule = await import(
+        '@toast-ui/editor/dist/toastui-editor-viewer'
+      )
+      await import('@toast-ui/editor/dist/toastui-editor-viewer.css')
+      this.editor = new ViewerModule.default({
+        el: this.$refs.noteContentWrap
+      })
     }
   }
 }
