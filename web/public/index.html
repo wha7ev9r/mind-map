@@ -53,6 +53,14 @@
         el.parentNode.insertBefore(l, el.nextSibling)
       }
     </script>
+    <!-- vue 必须最先加载：element-ui 的 UMD 依赖全局 Vue -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js"
+      integrity="sha384-OZmxTjkv7EQo5XDMPAmIkkvywVeXw59YyYh6zq8UKfkbor13jS+5p8qMTBSA1q+F"
+      crossorigin="anonymous"
+      defer
+      onerror="cdnFallback(this, 'https://unpkg.com/vue@2.6.11/dist/vue.min.js', 'sha384-OZmxTjkv7EQo5XDMPAmIkkvywVeXw59YyYh6zq8UKfkbor13jS+5p8qMTBSA1q+F')"
+    ></script>
     <script
       src="https://cdn.jsdelivr.net/npm/element-ui@2.15.14/lib/index.js"
       integrity="sha384-pg3detCs/QybtaIrIhYFKMrhdlXpsil+MUFDLsMS2KiBb9ZBu5ipUSeMQOOQTXqt"
@@ -77,7 +85,7 @@
       charset="UTF-8"
       id="LA_COLLECT"
       src="//sdk.51.la/js-sdk-pro.min.js"
-      defer
+      async
     ></script>
     <script>
       // 等待 51.la 统计脚本（defer 加载）就绪后再初始化

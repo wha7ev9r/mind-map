@@ -45,6 +45,8 @@ module.exports = {
     // 生产环境通过 CDN 引入的大库，减小打包体积
     externals: !isDev
       ? {
+          // vue 必须最先加载（element-ui 的 UMD 依赖全局 Vue）
+          vue: 'Vue',
           'element-ui': 'ELEMENT',
           mathlive: 'MathLive'
         }
