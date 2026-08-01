@@ -1,0 +1,15 @@
+.noteContentViewer[data-v-001bb58c] {
+  position: fixed;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  z-index: 2;
+}
+.noteContentViewer .noteContentWrap[data-v-001bb58c] {
+  max-width: 250px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
