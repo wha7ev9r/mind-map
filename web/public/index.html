@@ -9,36 +9,63 @@
     />
     <link rel="icon" href="dist/logo.ico" />
     <title>思绪思维导图</title>
-    <!-- CDN 资源：element-ui / mathlive（锁定版本，减小打包体积） -->
+    <!-- CDN 资源：element-ui / mathlive（锁定版本 + SRI 完整性校验，减小打包体积） -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/element-ui@2.15.14/lib/theme-chalk/index.css"
+      integrity="sha384-U/oTChX3yRnZAbda3u2iWVBW/3V8d0HVEdq5PUo4VpZia68QK9lmrfpObbqcliCS"
+      crossorigin="anonymous"
+      onerror="cdnFallbackCss(this, 'https://unpkg.com/element-ui@2.15.14/lib/theme-chalk/index.css', 'sha384-U/oTChX3yRnZAbda3u2iWVBW/3V8d0HVEdq5PUo4VpZia68QK9lmrfpObbqcliCS')"
     />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/mathlive@0.110.0/mathlive-fonts.css"
+      integrity="sha384-bM7DoAEijDQHufH3TpTu231ivT7MHdqFSabucM8mLR6nZfF85DEQbKuuSv+r1V22"
+      crossorigin="anonymous"
+      onerror="cdnFallbackCss(this, 'https://unpkg.com/mathlive@0.110.0/mathlive-fonts.css', 'sha384-bM7DoAEijDQHufH3TpTu231ivT7MHdqFSabucM8mLR6nZfF85DEQbKuuSv+r1V22')"
     />
     <script>
       // CDN 主源加载失败时回退到备用源，避免应用白屏
-      function cdnFallback(el, url) {
+      function cdnFallback(el, url, integrity) {
         if (!el) return
         el.onerror = null
         var s = document.createElement('script')
         s.src = url
         s.async = false
         s.defer = true
+        if (integrity) {
+          s.integrity = integrity
+          s.crossOrigin = 'anonymous'
+        }
         el.parentNode.insertBefore(s, el.nextSibling)
+      }
+      // 样式表加载失败时的回退（备用源 + 相同的 SRI 校验）
+      function cdnFallbackCss(el, url, integrity) {
+        if (!el) return
+        el.onerror = null
+        var l = document.createElement('link')
+        l.rel = 'stylesheet'
+        l.href = url
+        if (integrity) {
+          l.integrity = integrity
+          l.crossOrigin = 'anonymous'
+        }
+        el.parentNode.insertBefore(l, el.nextSibling)
       }
     </script>
     <script
       src="https://cdn.jsdelivr.net/npm/element-ui@2.15.14/lib/index.js"
+      integrity="sha384-pg3detCs/QybtaIrIhYFKMrhdlXpsil+MUFDLsMS2KiBb9ZBu5ipUSeMQOOQTXqt"
+      crossorigin="anonymous"
       defer
-      onerror="cdnFallback(this, 'https://unpkg.com/element-ui@2.15.14/lib/index.js')"
+      onerror="cdnFallback(this, 'https://unpkg.com/element-ui@2.15.14/lib/index.js', 'sha384-pg3detCs/QybtaIrIhYFKMrhdlXpsil+MUFDLsMS2KiBb9ZBu5ipUSeMQOOQTXqt')"
     ></script>
     <script
       src="https://cdn.jsdelivr.net/npm/mathlive@0.110.0/mathlive.min.js"
+      integrity="sha384-5IN6K0kiaz8MufrTGBvPCP3oDeMjmwe+DDTvuyQLNv6gc634FpKbQfllonjHJPmy"
+      crossorigin="anonymous"
       defer
-      onerror="cdnFallback(this, 'https://unpkg.com/mathlive@0.110.0/mathlive.min.js')"
+      onerror="cdnFallback(this, 'https://unpkg.com/mathlive@0.110.0/mathlive.min.js', 'sha384-5IN6K0kiaz8MufrTGBvPCP3oDeMjmwe+DDTvuyQLNv6gc634FpKbQfllonjHJPmy')"
     ></script>
     <script>
       // 自定义静态资源的路径
